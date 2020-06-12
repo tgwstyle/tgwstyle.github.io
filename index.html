@@ -1,12 +1,184 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title></title>
-</head>
-<body>
-	天宫我hello
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>3D背景</title>
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<header>
+			<div class="personal">Personal Web</div>
+		</header>
+		<section>
+			<div class="left">
+				<div class="txt">
+					<text class="title">求职意向：前端开发</text>
+					<text class="title">教育背景</text>
+					<text class="eduction">2015.09-2019.6 贵州师范大学 本科 电子信息科学与技术</text>
+				</div>
+				<div class="txt">
+					<text class="title">工作经历</text>
+					<text class="eduction">2018.09 至2020.03 贵州唯爱家智能科技有限公司 前端开发</text>
+					<text class="title">内容：开发唯爱家小程序、唯爱家 App、唯爱家官网 负责唯爱家小程序的编写，完成小程序的各大模块，优化支付 功能，目前已经发布；负责官网的开发，使用 vue 框架开发官网， 采用响应式布局，并官网的功能模块化；负责唯爱家 App 的开发， 使用vue 框架完成App 的三大模块的开发：首页、商城、我要装修 。</text>
+				</div>
+				<div class="txt">
+					<text class="title">2020.03 至今 贵煤数据 前端开发工程师</text>
+					<text class="title">内容：主要负责开发公司的小程序，负责建立小程序前端框架，封装 接口与后端进行数据对接，在没有产品经理与UI设计的前提下，自 己设计页面结构和页面美化；以及在官网上二次开发贵州煤矿在地 图上的分布及煤矿的平面结构；编写贵煤数据后台管理中心，为公 司公众号发布及管理信息的后台数据管理系统；以及着手准备二次 开发公司的App和PC端应用贵煤数据煤矿大屏。</text>
+				</div>
+			</div>
+			<div class="right">
+				<div class="newData">
+					<img src="./images/head.png" alt="">
+				</div>
+				<div class="newData"></div>
+				<div class="newData"></div>
+				<div class="newData"></div>
+			</div>
+		</section>
+		<footer></footer>
+		<div class="background">
+			<div class="rotate">
+				<div class="sphere">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="sphere">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="sphere">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="sphere">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<style type="text/css">
+				body {
+					margin: 0;
+					padding: 0;
+					background: url('timg.jpg');
+				}
+
+				.background {
+					position: fixed;
+					top:0;
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+					z-index: -1;
+				}
+
+				.background .rotate {
+					position: absolute;
+					top: calc(50% - 200px);
+					left: calc(50% - 200px);
+					width: 400px;
+					height: 400px;
+					transform-style: preserve-3d;
+					animation: rotate 150s linear infinite;
+					/* 适配搜狐与谷歌 */
+					-webkit-animation: rotate 150s linear infinite;
+					zoom: 2;
+				}
+
+				@keyframes rotate {
+					0% {
+						transform: rotateX(0deg) rotateY(0deg);
+					}
+
+					100% {
+						transform: rotateX(360deg) rotateY(360deg);
+					}
+				}
+				
+				/* 适配搜狐与谷歌 */
+				@-webkit-keyframes rotate {
+					0% {
+						transform: rotateX(0deg) rotateY(0deg);
+					}
+				
+					100% {
+						transform: rotateX(360deg) rotateY(360deg);
+					}
+				}
+
+				.background .rotate .sphere {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					transform-style: preserve-3d;
+				}
+
+
+				.background .rotate .sphere:nth-child(2) {
+					transform: rotate(90deg);
+				}
+
+				.background .rotate .sphere:nth-child(3) {
+					transform: rotate(45deg);
+				}
+
+				.background .rotate .sphere:nth-child(4) {
+					transform: rotate(-45deg);
+				}
+
+				.background .rotate .sphere span {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					transform-style: preserve-3d;
+					background: radial-gradient(#3c667e, #fff);
+					border-radius: 50%;
+				}
+
+				.background .rotate .sphere span:nth-child(1) {
+					transform: rotateY(0deg);
+				}
+
+				.background .rotate .sphere span:nth-child(2) {
+					transform: rotateY(30deg);
+				}
+
+				.background .rotate .sphere span:nth-child(3) {
+					transform: rotateY(60deg);
+				}
+
+				.background .rotate .sphere span:nth-child(4) {
+					transform: rotateY(90deg);
+				}
+
+				.background .rotate .sphere span:nth-child(5) {
+					transform: rotateY(120deg);
+				}
+
+				.background .rotate .sphere span:nth-child(6) {
+					transform: rotateY(150deg);
+				}
+			</style>
+	</body>
 </html>
