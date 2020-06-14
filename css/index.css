@@ -1,6 +1,6 @@
 
 body{
-    margin:0
+    margin:0;
 }
 header{
     width: 900px;
@@ -9,14 +9,67 @@ header{
     margin: auto;
 }
 
+/* 中间开始 */
 section{
     width: 900px;
     height:auto; 
-    background-color: rgba(166,166,166,0.8);
+    /* background-color: rgba(166,166,166,0.8); */
     margin: auto;
     display: flex;
     flex-wrap: wrap;
 }
+.left{
+    width: 295px;
+    height:auto;
+     background-color: rgba(166,166,166,0.8);
+     margin-right: 5px;
+     display: flex;
+     flex-direction: column;
+}
+.imgTH{
+    width: 50%;
+    height:auto;
+    margin:50px 25% 0;
+}
+.name{
+    width: 100%;
+    height:auto;
+    text-align: center;
+    font-size: 28px;
+    color:#fff;
+    margin-top: 25px;
+}
+.love{
+    width: calc(100% - 25px);
+    height:auto;
+    text-align: center;
+    font-size: 28px;
+    color:#fff;
+    margin: 25px 0 ;
+}
+.myData{
+    width: 100%;
+    height: auto;
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+}
+.myData text{
+    width: auto;
+    margin-right: 30px;
+   line-height: 30px;
+}
+.right{
+    width: 600px;
+    height:1000px;
+     background-color: rgba(166,166,166,0.8);
+}
+
+/* 中间结束 */
+
+
 
 footer{
     width: 900px;
@@ -35,35 +88,3 @@ footer{
     
 }
 
-.left{
-    width: 600px;
-    height:1000px;
-}
-.right{
-    width: 300px;
-    height:1000px;
-}
-.newData{
-    width: 280px;
-    height: auto;
-    margin: auto;
-}
-.newData img{
-    width:200px;
-    height:auto;
-    margin-left: 40px;
-    margin-top: 25px;
-}
-.txt{
-    color:black;
-    display: flex;
-    flex-direction: column;
-}
-.title{
-    font-size: 20px;
-    margin: 20px 0 0 20px;
-}
-.eduction{
-    font-size: 18px;
-    margin: 20px 0 0 20px;
-}
