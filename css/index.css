@@ -1,14 +1,33 @@
 
 body{
     margin:0;
+    background: #000;
+}
+[v-cloak]{
+    display: none
 }
 header{
     width: 900px;
     height:80px;
     background-image: linear-gradient(to bottom right, rgba(1,37,46,0.8), rgba(50, 146, 146, 0.8));
     margin: auto;
+    display: flex;
+    flex-direction: row;
 }
+.personal{
+    width: 40%;
+    height:80px;
+    color:#fff;
+    line-height:80px;
+    font-size:36px;
+    margin-left:20px;
 
+}
+.menu{
+    width: calc(100% - 40%);
+    height:40px;
+    margin-top:40px;
+}
 /* 中间开始 */
 section{
     width: 900px;
@@ -78,13 +97,5 @@ footer{
     margin: auto;
 }
 
-.personal{
-    width: 40%;
-    height:80px;
-    color:#fff;
-    line-height:80px;
-    font-size:36px;
-    margin-left:20px;
-    
-}
+
 

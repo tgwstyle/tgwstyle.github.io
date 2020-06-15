@@ -5,40 +5,49 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
                 <meta name="baidu-site-verification" content="KXHwpz3GEV" />
-		<title>个人网站</title>
+		<title>Personal Web</title>
 		<link rel="stylesheet" href="./css/index.css">
 	</head>
-	<body>
-		<header>
-			<div class="personal">Personal Web</div>
-		</header>
-		<section>
-			<div class="left">
-				<img class="imgTH" src="./images/head.png" alt="">
-				<div class="name">田功文</div>
-				<div class="myData">
+	<body style="background:#00000">
+		<div id="web" v-clock>
+			<header>
+				<div class="personal">Personal Web</div>
+				<div class="menu">
+					<router-link tp="/">首页</router-link>
+					<router-link to="/">关于我</router-link>
+					<router-link to="/">项目案例</router-link>
+				</div>
+			</header>
+			<section>
+				<div class="left">
+					<img class="imgTH" src="./images/head.png" alt="">
+					<div class="name">田功文</div>
+					<div class="myData">
 						<text>出生年月：1996.04</text>
 						<text>联系电话：18285554901</text>
 						<text>电子邮箱：2609886290@qq.com</text>
 						<text>工作经验：2年</text>
-				</div>
-				<div class="myData">
-					<text class="love">兴趣爱好</text>
-					<text>1、工作认真负责，积极主动，能吃苦耐劳。</text>
-					<text>2、较强的适应能力和自学能力， 较强的管理、组织能力。</text>
-					<text>3、思维敏捷，较强的动手实践能力和团体协作精神</text>
-				</div>
-				<div class="myData">
-					<text class="love">自我评价</text>
-					<text>1、工作认真负责，积极主动，能吃苦耐劳。</text>
-					<text>2、较强的适应能力和自学能力， 较强的管理、组织能力。</text>
-					<text>3、思维敏捷，较强的动手实践能力和团体协作精神</text>
-				</div>
+					</div>
+					<div class="myData">
+						<text class="love">兴趣爱好</text>
+						<text>1、工作认真负责，积极主动，能吃苦耐劳。</text>
+						<text>2、较强的适应能力和自学能力， 较强的管理、组织能力。</text>
+						<text>3、思维敏捷，较强的动手实践能力和团体协作精神</text>
+					</div>
+					<div class="myData">
+						<text class="love">自我评价</text>
+						<text>1、工作认真负责，积极主动，能吃苦耐劳。</text>
+						<text>2、较强的适应能力和自学能力， 较强的管理、组织能力。</text>
+						<text>3、思维敏捷，较强的动手实践能力和团体协作精神</text>
+					</div>
 
-			</div>
-			<div class="right"></div>
-		</section>
-		<footer></footer>
+				</div>
+				<div class="right">
+					<router-view></router-view>
+				</div>
+			</section>
+			<footer></footer>
+		</div>
 		<div class="background">
 			<div class="rotate">
 				<div class="sphere">
@@ -74,12 +83,38 @@
 					<span></span>
 				</div>
 			</div>
+			<script src="./script/vue.js"></script>
+			<script src="./script/vue-rouer.js"></script>
+			<script>
+				const Foo = { template: '<div>foo</div>' }
+				const Bar = { template: '<div>bar</div>' }
+
+				const routes = [
+					{ path: '/foo', component: Foo },
+					{ path: '/bar', component: Bar }
+				]
+
+				const router = new VueRouter({
+					routes
+				})
+
+				const app = new Vue({
+					router
+				}).$mount('#web')
+				
+				var vm = new Vue({
+					el:"#web",
+					data:{
+						message:"hello word gggggggg"
+					}
+				})
+			</script>
 			<style type="text/css">
-				body {
-					margin: 0;
-					padding: 0;
-					background: url('timg.jpg');
-				}
+				/*body {*/
+				/*	margin: 0;*/
+				/*	padding: 0;*/
+				/*	background: url('timg.jpg');*/
+				/*}*/
 
 				.background {
 					position: fixed;
@@ -100,7 +135,7 @@
 					animation: rotate 150s linear infinite;
 					/* 适配搜狐与谷歌 */
 					-webkit-animation: rotate 150s linear infinite;
-					zoom: 1;
+					zoom: 2;
 				}
 
 				@keyframes rotate {
