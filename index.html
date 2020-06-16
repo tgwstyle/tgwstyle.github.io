@@ -23,8 +23,8 @@
 			</header>
 			<section>
 				<div class="left">
-					<img class="imgTH" src="./images/head.png" alt="">
-					<div class="name" @click="getData">田功文</div>
+					<img class="imgTH"  @click="getData" src="./images/head.png" alt="">
+					<div class="name">{{news.name}}</div>
 					<div class="myData">
 						<span>出生年月：1996.04</span>
 						<span>联系电话：18285554901</span>
@@ -147,11 +147,15 @@
 				const app = new Vue({
 					router,
 					data:{
-						message:"kkkkkkkkk"
+						message:"kkkkkkkkk",
+						news:[]
+					},
+					created(){
+						// this.getData()
 					},
 					methods:{
 						getData(){
-							console.log(">>>>>")
+							let that = this;
 							var now = Date.now();
 							var appKey = SHA1("A6004734576512" + "UZ" + "AE2C6B65-8395-EA10-04DB-23955DF2484E" + "UZ" + now) + "." + now
 							$.ajax({
@@ -163,7 +167,8 @@
 									"X-APICloud-AppKey": appKey
 								},
 								success(res, err) {
-									console.log(JSON.stringify(res))
+									that.news = res;
+									console.log(JSON.stringify(that.news))
 								}
 							})
 						}
