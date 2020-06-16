@@ -24,7 +24,7 @@
 			<section>
 				<div class="left">
 					<img class="imgTH" src="./images/head.png" alt="">
-					<div class="name">田功文</div>
+					<div class="name" @click="getData">田功文</div>
 					<div class="myData">
 						<span>出生年月：1996.04</span>
 						<span>联系电话：18285554901</span>
@@ -129,6 +129,8 @@
 
 			<script src="./script/vue.js"></script>
 			<script src="./script/vue-rouer.js"></script>
+			<script src="./script/zepto.js"></script>
+			<script src="./script/sha1.js"></script>
 			<script>
 				const abc = { template: '#my'}
 				const Foo = { template: '<div>foo</div>' }
@@ -147,6 +149,25 @@
 					data:{
 						message:"kkkkkkkkk"
 					},
+					methods:{
+						getData(){
+							console.log(">>>>>")
+							var now = Date.now();
+							var appKey = SHA1("A6004734576512" + "UZ" + "AE2C6B65-8395-EA10-04DB-23955DF2484E" + "UZ" + now) + "." + now
+							$.ajax({
+								"url": "https://d.apicloud.com/mcm/api/users/5ee1dc513c905fa4229c2d68",
+								"method": "GET",
+								"cache": false,
+								"headers": {
+									"X-APICloud-AppId": "A6004734576512",
+									"X-APICloud-AppKey": appKey
+								},
+								success(res, err) {
+									console.log(JSON.stringify(res))
+								}
+							})
+						}
+					}
 				}).$mount('#web')
 			</script>
 
