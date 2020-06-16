@@ -19,7 +19,9 @@ header{
     display: flex;
     flex-direction: row;
     position: fixed;
-    top:0
+    top:0;
+
+
 }
 .personal{
     width: 40%;
@@ -55,6 +57,8 @@ section{
     margin:80px auto 0;
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
+    overflow-y: hidden;
 }
 .left{
     width: 295px;
@@ -103,8 +107,7 @@ section{
     width: 600px;
     height:auto;
      background-color: rgba(166,166,166,0.3);
-
-    overflow:auto
+    overflow:hidden
 }
 
 /* 中间结束 */
