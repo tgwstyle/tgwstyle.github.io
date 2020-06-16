@@ -1,11 +1,12 @@
 
+[v-cloak]{
+    display: none
+}
 body{
     margin:0;
     background: #000;
 }
-[v-cloak]{
-    display: none
-}
+
 header{
     width: 900px;
     height:80px;
@@ -27,11 +28,24 @@ header{
     width: calc(100% - 40%);
     height:40px;
     margin-top:40px;
+    text-align: right;
+}
+.menuChild{
+    color:#fff;
+    margin-right: 30px;
+}
+a {
+    text-decoration: none;
+}
+
+.router-link-active {
+    color:#4a9e7c;
+    text-decoration: none;
 }
 /* 中间开始 */
 section{
     width: 900px;
-    height:auto; 
+    height:auto;
     /* background-color: rgba(166,166,166,0.8); */
     margin: auto;
     display: flex;
@@ -40,7 +54,7 @@ section{
 .left{
     width: 295px;
     height:auto;
-     background-color: rgba(166,166,166,0.8);
+     background-color: rgba(166,166,166,0.3);
      margin-right: 5px;
      display: flex;
      flex-direction: column;
@@ -75,7 +89,7 @@ section{
     justify-content: center;
     margin: 20px;
 }
-.myData text{
+.myData span{
     width: auto;
     margin-right: 30px;
    line-height: 30px;
@@ -83,7 +97,7 @@ section{
 .right{
     width: 600px;
     height:1000px;
-     background-color: rgba(166,166,166,0.8);
+     background-color: rgba(166,166,166,0.3);
 }
 
 /* 中间结束 */
