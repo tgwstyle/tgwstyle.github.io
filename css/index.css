@@ -6,7 +6,11 @@ body{
     margin:0;
     background: #000;
 }
-
+#web{
+    width: 900px;
+    height:auto;
+    margin: auto;
+}
 header{
     width: 900px;
     height:80px;
@@ -14,6 +18,8 @@ header{
     margin: auto;
     display: flex;
     flex-direction: row;
+    position: fixed;
+    top:0
 }
 .personal{
     width: 40%;
@@ -46,8 +52,7 @@ a {
 section{
     width: 900px;
     height:auto;
-    /* background-color: rgba(166,166,166,0.8); */
-    margin: auto;
+    margin:80px auto 0;
     display: flex;
     flex-wrap: wrap;
 }
@@ -96,8 +101,10 @@ section{
 }
 .right{
     width: 600px;
-    height:1000px;
+    height:auto;
      background-color: rgba(166,166,166,0.3);
+
+    overflow:auto
 }
 
 /* 中间结束 */
