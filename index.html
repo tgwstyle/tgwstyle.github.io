@@ -16,20 +16,20 @@
 		<div id="web" >
 			<header>
 				<div class="personal">Personal Web</div>
-				<div class="menu" v-show="show">
+				<div class="menu">
                     <!--exact 解决默认地址一直处于选中的样式-->
 					<router-link exact class="menuChild" to="/">首页</router-link>
 					<router-link class="menuChild" to="/Foo">项目案例</router-link>
 					<router-link class="menuChild"  to="/Bar">关于我</router-link>
 				</div>
-				<div class="menu white-space" v-show="shows"><span @click="loginShow">登陆 /</span> <span class="white-space" >注册  </span></div>
+<!--				<div class="menu white-space" v-show="shows"><span @click="loginShow">登陆 /</span> <span class="white-space" >注册  </span></div>-->
 			</header>
 			<section>
-				<div class="left">
+				<div style=" width: 295px;height:auto; background-color: rgba(166,166,166,0.3);margin-right: 5px;display: flex;flex-direction: column;" :class="{'left':leftstyle}">
 					<img class="imgTH" src="./images/head.png" alt="">
-					<div class="name" @click="getData">{{userData.name}}</div>
+					<div class="name" @click="getData">南佳</div>
 					<div class="myData">
-						<span @click="getCookie">出生年月：1996.04</span>
+						<span >出生年月：1996.04</span>
 						<span>联系电话：18285554901</span>
 						<span>电子邮箱：2609886290@qq.com</span>
 						<span>工作经验：2年</span>
@@ -51,7 +51,7 @@
 
 
 <!--				右边导航栏内容开始-->
-				<div class="right">
+				<div style=" width: 600px; height:auto;background-color: rgba(166,166,166,0.3);" :class="{'right':leftstyle}">
 					<router-view></router-view>
 				</div>
 <!--				右边导航栏内容结束-->
@@ -59,19 +59,19 @@
 
 <!--			底部-->
 			<footer></footer>
-			<div class="toast" v-show="showT">
-				<div class="toast_content">
-					<form action="">
-						<div>登陆</div>
-						<div>账号 <input placeholder="请输入账号" type="text" v-model="number"></div>
-						<div>密码 <input placeholder="请输入密码" type="password" v-model="password"></div>
-						<div>
-							<button @click="userlogin">登陆</button>
-							<button type="reset">重置</button>
-						</div>
-					</form>
-				</div>
-			</div>
+<!--			<div class="toast" v-show="showT">-->
+<!--				<div class="toast_content">-->
+<!--					<form action="">-->
+<!--						<div>登陆</div>-->
+<!--						<div>账号 <input placeholder="请输入账号" type="text" v-model="number"></div>-->
+<!--						<div>密码 <input placeholder="请输入密码" type="password" v-model="password"></div>-->
+<!--						<div>-->
+<!--							<button @click="userlogin">登陆</button>-->
+<!--							<button type="reset">重置</button>-->
+<!--						</div>-->
+<!--					</form>-->
+<!--				</div>-->
+<!--			</div>-->
 		</div>
 
 
@@ -118,8 +118,8 @@
 <!--			首页内容开始-->
 			<template id="my">
 				<div class="index">
-					<h3 onclick="getCookie()">教育背景</h3>
-					<div class="content color" onclick="setCookie()">2015.9-2019.06  贵州师范大学  电子信息科学与技术</div>
+					<h3>教育背景</h3>
+					<div class="content color">2015.9-2019.06  贵州师范大学  电子信息科学与技术</div>
 
 					<h3>工作经历</h3>
 					<div class="content color">2019.5-2020.03  贵州唯爱家智能科技有限公司  前端开发</div>
@@ -146,14 +146,55 @@
 			</template>
 <!--			首页内容结束-->
 
+<!--			项目案例-->
+			<template id="project">
+				<div>
+					<h3>煤事通App</h3>
+					<div class="my_img">
+						<img style="width: 270px; height:auto;margin:10px 0 0 20px " src="./images/one.jpg" />
+						<img style="width: 270px; height:auto; margin:10px 0 0 20px " src="./images/two.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/three.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/four.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/five.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/one.jpg" />
+					</div>
+					<h3>煤炭圈子</h3>
+					<div class="my_img">
+						<img style="width: 270px; height:auto;margin:10px 0 0 20px " src="./images/Wone.jpg" />
+						<img style="width: 270px; height:auto; margin:10px 0 0 20px " src="./images/Wtwo.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/Wthree.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/Wfour.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/Wfive.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/Wsix.jpg" />
+					</div>
+					<h3>煤事通App</h3>
+					<div class="my_img">
+						<img style="width: 270px; height:auto;margin:10px 0 0 20px " src="./images/one.jpg" />
+						<img style="width: 270px; height:auto; margin:10px 0 0 20px " src="./images/two.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/three.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/four.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/five.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/one.jpg" />
+					</div>
+					<h3>煤事通App</h3>
+					<div class="my_img">
+						<img style="width: 270px; height:auto;margin:10px 0 0 20px " src="./images/one.jpg" />
+						<img style="width: 270px; height:auto; margin:10px 0 0 20px " src="./images/two.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/three.jpg" />
+						<img style="width: 270px; height:auto; margin:20px 0 0 20px " src="./images/four.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/five.jpg" />
+						<img style="width: 270px; height:auto;margin:20px 0 0 20px " src="./images/one.jpg" />
+					</div>
+				</div>
+			</template>
 			<script src="./script/vue.js"></script>
 			<script src="./script/vue-rouer.js"></script>
 			<script src="./script/zepto.js"></script>
 			<script src="./script/sha1.js"></script>
 			<script>
 				const abc = { template: '#my'}
-				const Foo = { template: '<div>foo</div>' }
-				const Bar = { template: '<div>bar</div>' }
+				const Foo = { template: '#project' }
+				const Bar = { template: '#hhh' }
 
 				const router = new VueRouter({
 					routes:[
@@ -162,25 +203,6 @@
 						{ path: '/bar', component: Bar }
 					]
 				})
-				function setCookie(){
-					// var date = new Date()
-					// date.setTime(date.getDate()+ 24*3600)
-					// document.cookie ="test" + "=" + escape("value") + ";expires=" + date.toUTCString() + ";path=/";
-					seCookie("test", "okokopk")
-					console.log(document.cookie)
-				}
-
-				function seCookie(name, value){
-					var date = new Date()
-					date.setTime(date.getDate()+ 24 * 3600)
-					document.cookie =name + "=" + escape(value) + ";expires=" + date.toUTCString() + ";path=/";
-					console.log(document.cookie)
-				}
-
-				function getCookie(){
-					var is = document.cookie;
-					console.log("kkkkk",is.indexOf("test = "))
-				};
 				let now = Date.now();
 				let appKey = SHA1("A6004734576512" + "UZ" + "AE2C6B65-8395-EA10-04DB-23955DF2484E" + "UZ" + now) + "." + now
 
@@ -195,16 +217,28 @@
 						shows:true,
 						showT:false,
 						password:'',
-						number:''
+						number:'',
+						leftstyle:false
 					},
 					created(){
 
 					},
+					mounted(){
+						window.addEventListener('scroll',this.handleScroll)
+					},
 					methods:{
-						getCookie(){
-							var id = document.cookie;
-							alert(id)
+						handleScroll(){
+							let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop // 滚动条偏移量
+							console.log(scrollTop + '>>>' + '400')
+							if(scrollTop >400){
+								this.leftstyle = true;
+							}
+							if(scrollTop < 400){
+								this.leftstyle = false;
+							}
 						},
+
+
 						//根据Id获取用户信息
 						getData(){
 							let that = this;
@@ -221,7 +255,6 @@
 									"X-APICloud-AppKey": appKey
 								},
 								success(res, err) {
-									console.log(JSON.stringify(res))
 									that.userData = res
 								}
 							})
@@ -255,7 +288,6 @@
 										that.show = true;
 										that.shows = false;
 										that.showT = false;
-										document.cookie = "name = hello";
 									}
 								}
 							})
@@ -267,6 +299,21 @@
 
 
 			<style type="text/css">
+				.el-carousel__item h3 {
+					color: #475669;
+					font-size: 14px;
+					opacity: 0.75;
+					line-height: 200px;
+					margin: 0;
+				}
+
+				.el-carousel__item:nth-child(2n) {
+					background-color: #99a9bf;
+				}
+
+				.el-carousel__item:nth-child(2n+1) {
+					background-color: #d3dce6;
+				}
 				/*body {*/
 				/*	margin: 0;*/
 				/*	padding: 0;*/

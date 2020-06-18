@@ -115,12 +115,8 @@ section{
     flex-wrap: wrap;
 }
 .left{
-    width: 295px;
-    height:auto;
-     background-color: rgba(166,166,166,0.3);
-     margin-right: 5px;
-     display: flex;
-     flex-direction: column;
+    position:fixed;
+    top:80px;
 }
 .imgTH{
     width: 50%;
@@ -158,10 +154,9 @@ section{
    line-height: 30px;
 }
 .right{
-    width: 600px;
-    height:auto;
-     background-color: rgba(166,166,166,0.3);
+    margin-left: 300px;
 }
+
 
 /* 中间结束 */
 
