@@ -174,6 +174,7 @@
 					var date = new Date()
 					date.setTime(date.getDate()+ 24 * 3600)
 					document.cookie =name + "=" + escape(value) + ";expires=" + date.toUTCString() + ";path=/";
+					console.log(document.cookie)
 				}
 
 				function getCookie(){
@@ -186,7 +187,6 @@
 				const app = new Vue({
 					router,
 					data:{
-<<<<<<< HEAD
 						BASURL:'https://d.apicloud.com/',
 						appId:'A6004734576512',
 						userData:{}, //用户信息
@@ -199,13 +199,6 @@
 					},
 					created(){
 
-=======
-						message:"kkkkkkkkk",
-						news:[]
-					},
-					created(){
-						// this.getData()
->>>>>>> 340c7fb45f16521a1ba95449ccab96e14c9cbbd2
 					},
 					methods:{
 						getCookie(){
@@ -215,15 +208,10 @@
 						//根据Id获取用户信息
 						getData(){
 							let that = this;
-<<<<<<< HEAD
 							let appId = that.appId;
 							let BASURL = that.BASURL;
 							let userId = '5ee1dc513c905fa4229c2d68';
 							let url = 'mcm/api/users/'
-=======
-							var now = Date.now();
-							var appKey = SHA1("A6004734576512" + "UZ" + "AE2C6B65-8395-EA10-04DB-23955DF2484E" + "UZ" + now) + "." + now
->>>>>>> 340c7fb45f16521a1ba95449ccab96e14c9cbbd2
 							$.ajax({
 								"url": BASURL+url+userId,
 								"method": "GET",
@@ -233,7 +221,6 @@
 									"X-APICloud-AppKey": appKey
 								},
 								success(res, err) {
-<<<<<<< HEAD
 									console.log(JSON.stringify(res))
 									that.userData = res
 								}
@@ -270,10 +257,6 @@
 										that.showT = false;
 										document.cookie = "name = hello";
 									}
-=======
-									that.news = res;
-									console.log(JSON.stringify(that.news))
->>>>>>> 340c7fb45f16521a1ba95449ccab96e14c9cbbd2
 								}
 							})
 						}
