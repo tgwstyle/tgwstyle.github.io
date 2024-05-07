@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunktgw_blog"]=self["webpackChunktgw_blog"]||[]).push([[242],{13242:function(n,t,u){u.r(t),u.d(t,{default:function(){return b}});var a=u(66252);const e={class:"about"},r=(0,a._)("h1",null,"This is an about page",-1),s=[r];function c(n,t){return(0,a.wg)(),(0,a.iD)("div",e,s)}var o=u(83744);const i={},l=(0,o.Z)(i,[["render",c]]);var b=l}}]);
+//# sourceMappingURL=242.babe6097.js.map

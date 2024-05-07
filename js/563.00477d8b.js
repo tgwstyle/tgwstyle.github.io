@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunktgw_blog"]=self["webpackChunktgw_blog"]||[]).push([[563],{87563:function(e,r,n){n.r(r),n.d(r,{default:function(){return l}});var t=n(66252);const a=e=>((0,t.dD)("data-v-2e27f2dc"),e=e(),(0,t.Cn)(),e),c={class:"removeGame"},o=a((()=>(0,t._)("iframe",{src:"/static/fieryDragon.html",height:"800",frameborder:"none"},null,-1))),s=[o];function d(e,r){return(0,t.wg)(),(0,t.iD)("div",c,s)}var f=n(83744);const u={},i=(0,f.Z)(u,[["render",d],["__scopeId","data-v-2e27f2dc"]]);var l=i}}]);
+//# sourceMappingURL=563.00477d8b.js.map

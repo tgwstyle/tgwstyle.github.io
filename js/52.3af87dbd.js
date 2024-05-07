@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunktgw_blog"]=self["webpackChunktgw_blog"]||[]).push([[52],{91052:function(e,t,n){n.r(t),n.d(t,{default:function(){return f}});var r=n(66252);const a=e=>((0,r.dD)("data-v-42e26838"),e=e(),(0,r.Cn)(),e),s={class:"removeGame"},c=a((()=>(0,r._)("iframe",{src:"/static/test.html",height:"800",frameborder:"none"},null,-1))),o=[c];function u(e,t){return(0,r.wg)(),(0,r.iD)("div",s,o)}var d=n(83744);const i={},l=(0,d.Z)(i,[["render",u],["__scopeId","data-v-42e26838"]]);var f=l}}]);
+//# sourceMappingURL=52.3af87dbd.js.map

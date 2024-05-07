@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<style>
+    body, html {
+        width: 100%;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .huolong_page {
+        width: 100vw;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    canvas {
+        background-image: url("./hlBgImg.png");
+        margin-top: 10px;
+
+    }
+
+    .integral {
+        width: 330px;
+        height: 32px;
+        background: #fff;
+        line-height: 32px;
+        padding: 0px 10px;
+        margin-top: 30px;
+    }
+
+    #interNum {
+        font-size: 18px;
+    }
+
+    .mask{
+        display: none;
+        width: 360px;
+        height: 160px;
+        background: #fff;
+        position: fixed;
+        border-radius: 10px;
+    }
+    .mask_title{
+        margin: 30px auto 10px;
+        text-align: center;
+    }
+    .mask_content{
+        margin: auto;
+        text-align: center;
+    }
+    .mask_btn{
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        background: #409eff;
+        margin: 10px auto;
+        text-align: center;
+        border-radius: 6px;
+        color: #fff;
+    }
+    .mask_btn:active{
+        opacity: .5;
+    }
+
+</style>
+
+<div class="huolong_page">
+  <canvas id="canvas" width="350" height="700"></canvas>
+  <div class="integral">积分: <span id="interNum">0</span></div>
+  <div class="mask" id="mask_block">
+    <div class="mask_title">温馨提示</div>
+    <div class="mask_content">游戏结束,点击按钮重新开始</div>
+    <div class="mask_btn" id="resetBtn">重新开始</div>
+  </div>
+</div>
+</body>
+<script>
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    location.reload()
+  },false)
+
+  let mask = document.getElementById('mask_block')
+
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  // 图片资源
+  const dragonImage = new Image(); // 飞机
+  dragonImage.src = "./flaw1.png";
+
+
+  const bulletImage = new Image(); // 子弹
+  bulletImage.src = "./flaw.png";
+
+  const obstacleImage = new Image();
+  obstacleImage.src = "./flaw3.png"; // 障碍物
+  const obstacleImage1 = new Image(); // 障碍物
+  obstacleImage1.src = "./flaw4.png";
+  const obstacleImage2 = new Image(); // 障碍物
+  obstacleImage2.src = "./flaw5.png";
+
+  // 节流函数
+  const throttle = (() => {
+    let last = 0;
+    return (callback, wait = 100) => {
+      let now = +new Date();
+      if (now - last > wait) {
+        callback();
+        last = now;
+      }
+    };
+  })();
+
+  // 计算积分
+  function computed() {
+    obstacle.collNum++;
+    document.getElementById("interNum").innerHTML = `${obstacle.collNum}`;
+    if (obstacle.collNum < 20) {
+      obstacle.speed = 1; // 障碍物移动速度
+      obstacle1.speed = 1; // 障碍物移动速度
+      obstacle2.speed = 1; // 障碍物移动速度
+    } else if (obstacle.collNum < 35) {
+      obstacle.speed = 1.2; // 障碍物移动速度
+      obstacle1.speed = 1.2; // 障碍物移动速度
+      obstacle2.speed = 1.2; // 障碍物移动速度
+    } else if (obstacle.collNum < 50) {
+      obstacle.speed = 1.5; // 障碍物移动速度
+      obstacle1.speed = 1.5; // 障碍物移动速度
+      obstacle2.speed = 1.5; // 障碍物移动速度
+    } else if (obstacle.collNum < 70) {
+      obstacle.speed = 2; // 障碍物移动速度
+      obstacle1.speed = 2; // 障碍物移动速度
+      obstacle2.speed = 2; // 障碍物移动速度
+    } else {
+      obstacle.speed = 3; // 障碍物移动速度
+      obstacle1.speed = 3; // 障碍物移动速度
+      obstacle2.speed = 3; // 障碍物移动速度
+      bullet.speed = 20; // 子弹发射速度
+    }
+  }
+
+  // 火龙对象
+  let dragon = {
+    x: canvas.width / 2 - 15,
+    y: canvas.height - 60,
+    width: 30,
+    height: 30,
+    speed: 12,
+    draw: function() {
+      ctx.drawImage(dragonImage, this.x, this.y, this.width, this.height);
+    }
+  };
+
+  // 子弹对象
+  let bullet = {
+    x: 0,
+    y: 0,
+    width: 10,
+    height: 20,
+    speed: 10,
+    isShow: false,
+    shoot: function() {
+      this.x = dragon.x + dragon.width / 2 - this.width / 2;
+      this.y = dragon.y - this.height;
+      this.isShow = true;
+    },
+    draw: function() {
+      ctx.drawImage(bulletImage, this.x, this.y, this.width, this.height);
+    },
+    move: function() {
+      this.y -= this.speed;
+      if (this.y < 0) {
+        this.isShow = false;
+      }
+    }
+  };
+
+  // 障碍物对象
+  let obstacle = {
+    x: 0,
+    y: 0,
+    width: 30,
+    height: 30,
+    collNum: 0,
+    speed: 1,
+    isShow: false,
+    reset: function() {
+      this.x = Math.floor(Math.random() * (canvas.width - this.width));
+      this.y = 0;
+      this.isShow = true;
+    },
+    draw: function() {
+      ctx.drawImage(obstacleImage, this.x, this.y, this.width, this.height);
+
+    },
+    move: function() {
+      this.y += this.speed;
+      if (this.y + this.height > canvas.height) {
+        gameOverDeal()
+      }
+    }
+  };
+
+  // 障碍物对象
+  let obstacle1 = {
+    x: 35,
+    y: 0,
+    width: 30,
+    height: 30,
+    speed: 0.5,
+    collNum: 0,
+    isShow: false,
+    reset: function() {
+      this.x = Math.floor(Math.random() * (canvas.width - this.width));
+      this.y = 0;
+      this.isShow = true;
+    },
+    draw: function() {
+      ctx.drawImage(obstacleImage1, this.x, this.y, this.width, this.height);
+
+    },
+    move: function() {
+      this.y += this.speed;
+      if (this.y + this.height > canvas.height) {
+        gameOverDeal()
+      }
+    }
+  };
+
+  // 障碍物对象
+  let obstacle2 = {
+    x: 275,
+    y: 0,
+    width: 30,
+    height: 30,
+    speed: 1,
+    collNum: 0,
+    isShow: false,
+    reset: function() {
+      this.x = Math.floor(Math.random() * (canvas.width - this.width));
+      this.y = 0;
+      this.isShow = true;
+    },
+    draw: function() {
+      ctx.drawImage(obstacleImage2, this.x, this.y, this.width, this.height);
+
+    },
+    move: function() {
+      this.y += this.speed;
+      if (this.y + this.height > canvas.height) {
+        gameOverDeal()
+      }
+    }
+  };
+
+  // 处理用户输入
+  document.addEventListener("keydown", function(event) {
+    switch (event.code) {
+      case "ArrowLeft":
+        dragon.x -= dragon.speed;
+        if (dragon.x < 0) {
+          dragon.x = 0;
+        }
+        break;
+      case "ArrowRight":
+        dragon.x += dragon.speed;
+        if (dragon.x > 320) {
+          dragon.x = 320;
+        }
+        break;
+      case "ArrowUp":
+        dragon.y -= dragon.speed;
+        if (dragon.y < 0) {
+          dragon.y = 0;
+        }
+        break;
+      case "ArrowDown":
+        dragon.y += dragon.speed;
+        if (dragon.y > 670) {
+          dragon.y = 670;
+        }
+        break;
+      case "Space":
+        shootBullet();
+        // if (!bullet.isShow) {
+        //   bullet.shoot();
+        // }
+        break;
+      default:
+        break;
+    }
+  });
+
+  // 创建Bullet对象
+  function Bullet(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+  }
+
+  // 存储所有的子弹
+  let bullets = [];
+
+  // 发射一颗子弹
+  function shootBullet() {
+    throttle(() => {
+      let bullet = new Bullet(dragon.x + 12.5, dragon.y, 10);
+      bullets.push(bullet);
+    }, 100);
+
+  }
+
+  // 更新所有的子弹
+  function updateBullets() {
+    for (let i = 0; i < bullets.length; i++) {
+      let bullet = bullets[i];
+      bullet.y -= bullet.speed;
+      if (bullet.y < 0) {
+        // 如果子弹飞出了屏幕，从数组中删除它
+        bullets.splice(i, 1);
+        i--;
+      }
+    }
+  }
+
+  // 绘制所有的子弹
+  function drawBullets() {
+    ctx.fillStyle = "yellow";
+    for (let i = 0; i < bullets.length; i++) {
+      let bullet = bullets[i];
+      ctx.fillRect(bullet.x, bullet.y, 5, 10);
+    }
+  }
+
+  // 游戏主循环
+  let timer = setInterval(function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBullets();
+    // 绘制和更新火龙
+    dragon.draw();
+
+    // 移动子弹和障碍物
+    if (bullet.isShow) {
+      bullet.move();
+      bullet.draw();
+    }
+    if (obstacle.isShow) {
+
+      obstacle.move();
+      obstacle.draw();
+
+      if (isCollide(bullet, obstacle)) { // 子弹与障碍物碰撞校验
+        obstacle.isShow = false;
+        bullet.isShow = false;
+        obstacle.collNum++;
+        computed();
+      } else if (isCollide(dragon, obstacle)) { //
+        gameOverDeal()
+      } else {
+
+      }
+    }
+    // 如果障碍物没有显示，就重置障碍物位置
+    if (!obstacle.isShow) {
+      obstacle.reset();
+    }
+    // 如果障碍物没有显示，就重置障碍物位置
+    if (!obstacle1.isShow) {
+      obstacle1.reset();
+    }
+    // 如果障碍物没有显示，就重置障碍物位置
+    if (!obstacle2.isShow) {
+      obstacle2.reset();
+    }
+
+    if (obstacle1.isShow) {
+      obstacle1.move();
+      obstacle1.draw();
+
+      if (isCollide(bullet, obstacle1)) { // 子弹与障碍物碰撞校验
+        obstacle1.isShow = false;
+        bullet.isShow = false;
+        obstacle1.collNum++;
+        computed();
+      } else if (isCollide(dragon, obstacle1)) { //
+        gameOverDeal()
+      } else {
+
+      }
+    }
+
+    // 如果障碍物没有显示，就重置障碍物位置
+    if (!obstacle1.isShow) {
+      obstacle1.reset();
+    }
+
+    if (obstacle2.isShow) {
+
+      obstacle2.move();
+      obstacle2.draw();
+
+      if (isCollide(bullet, obstacle2)) { // 子弹与障碍物碰撞校验
+        obstacle2.isShow = false;
+        bullet.isShow = false;
+        obstacle2.collNum++;
+        computed();
+      } else if (isCollide(dragon, obstacle2)) { //
+        gameOverDeal()
+      } else {
+
+      }
+    }
+
+    chackmpact();
+
+    // 如果障碍物没有显示，就重置障碍物位置
+    if (!obstacle2.isShow) {
+      obstacle2.reset();
+    }
+
+    updateBullets();
+
+  }, 1000 / 60);
+
+  // 游戏结束处理
+  function gameOverDeal() {
+    mask.style.display = 'block'
+    clearInterval(timer)
+  }
+
+
+  function chackmpact() {
+    for (let i = 0; i < bullets.length; i++) {
+      if (isCollide(bullets[i], obstacle2)) {
+        bullets.splice(i, 1);
+        obstacle2.isShow = false;
+        computed();
+      }
+      if (isCollide(bullets[i], obstacle1)) {
+        bullets.splice(i, 1);
+        obstacle1.isShow = false;
+        computed();
+      }
+      if (isCollide(bullets[i], obstacle)) {
+        bullets.splice(i, 1);
+        obstacle.isShow = false;
+        computed();
+      }
+    }
+  }
+
+  // 碰撞检测函数
+  function isCollide(rect1, rect2) {
+    if (rect1 && rect1.y && rect1.y !== 0 && rect1.y - 30 < rect2.y && rect2.y < rect1.y + 30 && rect1.y !== 640 && rect1.x > rect2.x && rect2.x + 30 > rect1.x) {
+      return true;
+    }
+  }
+
+
+</script>
+</html>
